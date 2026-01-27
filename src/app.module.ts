@@ -1,0 +1,19 @@
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from 'apps/auth-service/src/entities/user.entity';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthService } from 'apps/auth-service/src/auth.service';
+import { DatabaseModule } from '@app/database/config/database.module';
+
+@Module({
+  imports: [
+    DatabaseModule,
+    TypeOrmModule.forFeature([User]),
+    JwtModule.register({}),
+  ],
+  controllers: [AppController],
+  providers: [AppService, AuthService],
+})
+export class AppModule { }
