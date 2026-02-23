@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
 export const OrderItemSchema = z.object({
-  menuItemId: z.string().uuid('Invalid menu item ID'),
+  menuItemId: z.uuid('Invalid menu item ID'),
   quantity: z.number().int().positive('Quantity must be positive'),
   specialInstructions: z.string().max(500).optional(),
 });
 
 export const CreateOrderSchema = z.object({
-  restaurantId: z.string().uuid('Invalid restaurant ID'),
+  restaurantId: z.uuid('Invalid restaurant ID'),
   items: z.array(OrderItemSchema).min(1, 'Order must contain at least one item'),
   deliveryAddress: z.object({
     street: z.string().min(5, 'Street address is required'),

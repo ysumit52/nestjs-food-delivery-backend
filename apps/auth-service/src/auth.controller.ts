@@ -1,7 +1,9 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ZodValidationPipe } from '@app/common';
-import { RegisterSchema, RegisterDto, LoginSchema, LoginDto } from '@app/common';
+import { RegisterDto, RegisterSchema } from './dto/register.dto';
+import { LoginSchema, LoginDto } from './dto/login.dto';
+
 
 @Controller('auth')
 export class AuthController {

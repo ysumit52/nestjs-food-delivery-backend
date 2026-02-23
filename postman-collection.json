@@ -1,0 +1,534 @@
+{
+  "info": {
+    "_postman_id": "food-delivery-backend",
+    "name": "Food Delivery Backend - Microservices",
+    "description": "API collection for testing all microservices",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth Service",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"Password123\",\n  \"name\": \"John Doe\",\n  \"phoneNumber\": \"9876543210\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/auth/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"Password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Catalog Service",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/catalog/categories",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["catalog", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Chinese\",\n  \"description\": \"Chinese cuisine\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/catalog/categories",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["catalog", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Get Category By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/catalog/categories/{{categoryId}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["catalog", "categories", "{{categoryId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get All Restaurants",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/catalog/restaurants",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["catalog", "restaurants"]
+            }
+          }
+        },
+        {
+          "name": "Get Restaurant By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/catalog/restaurants/{{restaurantId}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["catalog", "restaurants", "{{restaurantId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Menu Items (Search)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/catalog/menu-items?q=biryani",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["catalog", "menu-items"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "biryani"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Menu Items By Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/catalog/menu-items/category/{{categoryId}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["catalog", "menu-items", "category", "{{categoryId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Menu Items By Restaurant",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/catalog/menu-items/restaurant/{{restaurantId}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["catalog", "menu-items", "restaurant", "{{restaurantId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Menu Item By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/catalog/menu-items/{{menuItemId}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["catalog", "menu-items", "{{menuItemId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Order Service",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-user-id",
+                "value": "user-123"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"items\": [\n    {\n      \"menuItemId\": \"550e8400-e29b-41d4-a716-446655440001\",\n      \"quantity\": 2,\n      \"specialInstructions\": \"Less spicy\"\n    }\n  ],\n  \"deliveryAddress\": {\n    \"street\": \"123 Main Street\",\n    \"city\": \"Bangalore\",\n    \"state\": \"Karnataka\",\n    \"zipCode\": \"560001\",\n    \"landmark\": \"Near Tech Park\"\n  },\n  \"deliveryInstructions\": \"Ring the bell twice\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3003/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "Get User Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-user-id",
+                "value": "user-123"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3003/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "Get Order By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-user-id",
+                "value": "user-123"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3003/orders/{{orderId}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["orders", "{{orderId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"CONFIRMED\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3003/orders/{{orderId}}/status",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["orders", "{{orderId}}", "status"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Order",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "x-user-id",
+                "value": "user-123"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3003/orders/{{orderId}}/cancel",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["orders", "{{orderId}}", "cancel"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payment Service",
+      "item": [
+        {
+          "name": "Initiate Payment (Card)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-user-id",
+                "value": "user-123"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"amount\": 599.99,\n  \"paymentMethod\": \"CREDIT_CARD\",\n  \"cardDetails\": {\n    \"cardNumber\": \"4532123456789010\",\n    \"expiryMonth\": \"12\",\n    \"expiryYear\": \"2025\",\n    \"cvv\": \"123\",\n    \"cardHolderName\": \"John Doe\"\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3004/payments/initiate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3004",
+              "path": ["payments", "initiate"]
+            }
+          }
+        },
+        {
+          "name": "Initiate Payment (UPI)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-user-id",
+                "value": "user-123"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"amount\": 599.99,\n  \"paymentMethod\": \"UPI\",\n  \"upiDetails\": {\n    \"vpa\": \"user@googleplay\"\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3004/payments/initiate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3004",
+              "path": ["payments", "initiate"]
+            }
+          }
+        },
+        {
+          "name": "Initiate Payment (Wallet)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-user-id",
+                "value": "user-123"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"amount\": 599.99,\n  \"paymentMethod\": \"WALLET\",\n  \"walletDetails\": {\n    \"walletProvider\": \"PAYTM\",\n    \"walletId\": \"wallet-123\"\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3004/payments/initiate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3004",
+              "path": ["payments", "initiate"]
+            }
+          }
+        },
+        {
+          "name": "Verify Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionId\": \"TXN123456789\",\n  \"status\": \"SUCCESS\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3004/payments/{{paymentId}}/verify",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3004",
+              "path": ["payments", "{{paymentId}}", "verify"]
+            }
+          }
+        },
+        {
+          "name": "Get Payment By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-user-id",
+                "value": "user-123"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3004/payments/{{paymentId}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3004",
+              "path": ["payments", "{{paymentId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Payment By Order ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-user-id",
+                "value": "user-123"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3004/payments/order/{{orderId}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3004",
+              "path": ["payments", "order", "{{orderId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get User Payments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-user-id",
+                "value": "user-123"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3004/payments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3004",
+              "path": ["payments"]
+            }
+          }
+        },
+        {
+          "name": "Refund Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Customer requested refund\",\n  \"amount\": 599.99\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3004/payments/{{paymentId}}/refund",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3004",
+              "path": ["payments", "{{paymentId}}", "refund"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "userId",
+      "value": "user-123"
+    },
+    {
+      "key": "categoryId",
+      "value": ""
+    },
+    {
+      "key": "restaurantId",
+      "value": ""
+    },
+    {
+      "key": "menuItemId",
+      "value": ""
+    },
+    {
+      "key": "orderId",
+      "value": ""
+    },
+    {
+      "key": "paymentId",
+      "value": ""
+    }
+  ]
+}

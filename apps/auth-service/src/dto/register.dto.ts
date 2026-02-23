@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import z from "zod";
 
 export const RegisterSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -14,10 +14,4 @@ export const RegisterSchema = z.object({
     .regex(/^[0-9]{10}$/, 'Phone number must be 10 digits'),
 });
 
-export const LoginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
-});
-
 export type RegisterDto = z.infer<typeof RegisterSchema>;
-export type LoginDto = z.infer<typeof LoginSchema>;

@@ -9,11 +9,8 @@ import {
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { ZodValidationPipe } from '@app/common';
-import { CreateOrderSchema, CreateOrderDto } from './dto/create-order.dto';
-import {
-  UpdateOrderStatusSchema,
-  UpdateOrderStatusDto,
-} from './dto/update-order-status.dto';
+import { CreateOrderSchema, CreateOrderDto, UpdateOrderStatusSchema, UpdateOrderStatusDto } from './dto/order.dto';
+
 
 @Controller('orders')
 export class OrderController {

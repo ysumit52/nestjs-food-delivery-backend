@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { CatalogService } from './catalog.service';
 import { ZodValidationPipe } from '@app/common';
-import { CreateCategorySchema, CreateCategoryDto } from '@app/common';
+import { CreateCategoryDto, CreateCategorySchema } from './dto/catalog.dto';
 
 @Controller('catalog')
 export class CatalogController {

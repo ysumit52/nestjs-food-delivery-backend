@@ -4,7 +4,8 @@ import { Repository, Like } from 'typeorm';
 import { Category } from './entities/category.entity'
 import { Restaurant } from './entities/restaurant.entity';
 import { MenuItem } from './entities/menu-item.entity';
-import { CreateCategoryDto } from '@app/common';
+import { CreateCategoryDto } from './dto/catalog.dto';
+
 
 @Injectable()
 export class CatalogService {

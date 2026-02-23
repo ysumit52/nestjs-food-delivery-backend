@@ -3,6 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { join } from 'path';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { User } from './entities/user.entity';
@@ -12,20 +13,28 @@ import { JwtStrategy } from './strategies/jwt.strategy';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: './apps/auth-service/.env',
+      envFilePath: join(process.cwd(), 'apps/auth-service/.env'),
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DB_HOST', 'localhost'),
-        port: configService.get('DB_PORT', 5432),
-        username: configService.get('DB_USERNAME', 'postgres'),
-        password: configService.get('DB_PASSWORD', 'postgres'),
-        database: configService.get('DB_NAME', 'auth_db'),
-        entities: [User],
-        synchronize: true,
-      }),
+      useFactory: (configService: ConfigService) => {
+        const password = String(configService.get('DB_PASSWORD') || 'postgres');
+        const username = String(configService.get('DB_USERNAME') || 'postgres');
+        const host = String(configService.get('DB_HOST') || 'localhost');
+        const port = parseInt(String(configService.get('DB_PORT') || '5433'), 10);
+        const database = String(configService.get('DB_NAME') || 'auth_db');
+        
+        return {
+          type: 'postgres',
+          host,
+          port,
+          username,
+          password,
+          database,
+          entities: [User],
+          synchronize: true,
+        };
+      },
       inject: [ConfigService],
     }),
     TypeOrmModule.forFeature([User]),
