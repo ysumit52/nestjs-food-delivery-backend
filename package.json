@@ -28,7 +28,7 @@
     "start:order": "nest start order-service --watch",
     "start:payment": "nest start payment-service --watch",
     "verify:build": "npm run build:common && npm run build -- api-gateway && npm run build -- auth-service && npm run build -- catalog-service && npm run build -- order-service && npm run build -- payment-service",
-    "docker:build": "docker build -f Dockerfile.api-gateway -t food-delivery-api-gateway:latest . && docker build -f Dockerfile.auth-service -t food-delivery-auth-service:latest . && docker build -f Dockerfile.catalog-service -t food-delivery-catalog-service:latest . && docker build -f Dockerfile.order-service -t food-delivery-order-service:latest . && docker build -f Dockerfile.payment-service -t food-delivery-payment-service:latest .",
+    "docker:build": "docker build -f docker/Dockerfile.api-gateway -t food-delivery-api-gateway:latest . && docker build -f docker/Dockerfile.auth-service -t food-delivery-auth-service:latest . && docker build -f docker/Dockerfile.catalog-service -t food-delivery-catalog-service:latest . && docker build -f docker/Dockerfile.order-service -t food-delivery-order-service:latest . && docker build -f docker/Dockerfile.payment-service -t food-delivery-payment-service:latest .",
     "docker:up": "docker-compose -f docker/docker-compose.full.yml up -d",
     "docker:down": "docker-compose -f docker/docker-compose.full.yml down",
     "docker:logs": "docker-compose -f docker/docker-compose.full.yml logs -f",

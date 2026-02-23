@@ -159,8 +159,19 @@ docker-compose ps
 
 ```bash
 # Build shared libraries
-npm run build common
+npm run build:common
 ```
+
+## Project structure (root-level)
+
+- `apps/` - microservice projects (api-gateway, auth-service, catalog-service, order-service, payment-service)
+- `libs/` - shared libraries (common, database)
+- `docker/` - docker-compose files and service Dockerfiles
+- `scripts/` - helper startup and verification scripts
+- `docs/` - documentation and guides
+- `.github/workflows/` - CI/CD workflow definitions
+
+See `/docs` for detailed guides and `/scripts` for startup scripts.
 
 ### 6. Seed Catalog Data (Optional but Recommended)
 

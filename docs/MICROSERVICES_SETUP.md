@@ -4,7 +4,7 @@
 
 On Windows, simply run:
 ```bash
-.\start-local.bat
+.\scripts\start-local.bat
 ```
 
 This will automatically:
@@ -59,9 +59,6 @@ npm run start:gateway    # Terminal 5
 Check logs for messages like:
 ```
 Auth Service is running on: http://localhost:3001
-Catalog Service is running on: http://localhost:3002
-Order Service is running on: http://localhost:3003
-Payment Service is running on: http://localhost:3004
 ```
 
 ## Stop Services
@@ -78,11 +75,7 @@ Payment Service is running on: http://localhost:3004
 ## Troubleshooting
 
 ### Port Already in Use
-If a port is already in use, update the port in the `.env` file of the service:
-- Auth: `apps/auth-service/.env` → `PORT=3001`
-- Catalog: `apps/catalog-service/.env` → `PORT=3002`
-- Order: `apps/order-service/.env` → `PORT=3003`
-- Payment: `apps/payment-service/.env` → `PORT=3004`
+If a port is already in use, update the port in the `.env` file of the service.
 
 ### Database Connection Issues
 Verify Docker containers are running:
@@ -90,13 +83,7 @@ Verify Docker containers are running:
 docker ps
 ```
 
-Check environment variables match the docker-compose ports:
-```
-DB_PORT=5433  # Auth
-DB_PORT=5434  # Catalog
-DB_PORT=5435  # Order
-DB_PORT=5436  # Payment
-```
+Check environment variables match the docker-compose ports.
 
 ### Missing Dependencies
 Reinstall clean:

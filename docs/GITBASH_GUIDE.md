@@ -290,7 +290,7 @@ fi
 
 ## Performance Tips
 
-### 1. Use Bash Instead of PowerShell
+### 1. Use Bash Instead Of PowerShell
 Bash is generally faster in Git Bash for these operations.
 
 ### 2. Keep Containers Running
@@ -304,23 +304,10 @@ npm run start:all
 
 ### 3. Monitor Resource Usage
 ```bash
-# Check Docker resource usage
-docker stats
+# Check Docker resource usedocker stats
 
 # View memory usage
 free -m
-```
-
-### 4. Clean Up Unused Docker Resources
-```bash
-# Remove unused containers
-docker container prune
-
-# Remove unused images
-docker image prune
-
-# Remove unused volumes
-docker volume prune
 ```
 
 ---
@@ -363,36 +350,3 @@ curl http://localhost:3000
 ```
 
 All should return data or validation errors (not connection errors).
-
----
-
-## Quick Reference Commands
-
-```bash
-# Start everything
-bash start-local.sh
-
-# Stop everything
-docker-compose -f docker down
-
-# View all services
-npm run start:all
-
-# Build only
-npm run build:common
-
-# Lint code
-npm run lint
-
-# Run tests
-npm test
-
-# Check Node version
-node --version
-
-# Check npm version
-npm --version
-
-# Check Docker version
-docker --version
-```
