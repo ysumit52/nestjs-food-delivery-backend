@@ -275,6 +275,20 @@ services:
       timeout: 5s
       retries: 5
 
+  # Kafdrop - Kafka web UI for dev
+  kafdrop:
+    image: obsidiandynamics/kafdrop:latest
+    container_name: kafdrop
+    restart: unless-stopped
+    depends_on:
+      - kafka
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKERCONNECT: kafka:29092
+    networks:
+      - food-delivery-network
+
 volumes:
   auth_db_data:
   catalog_db_data:
